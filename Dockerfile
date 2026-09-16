@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:24-alpine
 
 LABEL org.opencontainers.image.title="Outlook Assistant"
 LABEL org.opencontainers.image.description="MCP server for Microsoft Outlook — 22 tools for email, calendar, contacts, and settings via Graph API"
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci --omit=dev --ignore-scripts
 
-COPY index.js config.js outlook-auth-server.js llms.txt ./
+COPY http.js config.js outlook-auth-server.js llms.txt ./
 COPY auth/ auth/
 COPY calendar/ calendar/
 COPY categories/ categories/
@@ -22,4 +22,6 @@ COPY settings/ settings/
 COPY advanced/ advanced/
 COPY utils/ utils/
 
-ENTRYPOINT ["node", "index.js"]
+USER node
+
+ENTRYPOINT ["node", "http.js"]

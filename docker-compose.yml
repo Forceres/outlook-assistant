@@ -1,0 +1,28 @@
+services:
+  outlook-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: outlook-mcp
+    restart: unless-stopped
+
+    environment:
+      NODE_ENV: production
+      PORT: ${PORT}
+      MCP_AUTH_TOKEN: ${MCP_AUTH_TOKEN}
+
+    volumes:
+      - outlook-data:/home/node
+
+    expose:
+      - '${PORT}'
+
+    networks:
+      - mcp
+
+volumes:
+  outlook-data:
+
+networks:
+  mcp:
+    driver: bridge

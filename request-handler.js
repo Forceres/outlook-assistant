@@ -16,15 +16,11 @@ const { coerceArgsAgainstSchema } = require('./utils/schema-coerce');
 /**
  * Build the MCP fallbackRequestHandler for a given tool set.
  * @param {Array<{name: string, description?: string, inputSchema?: object, annotations?: object, handler?: Function}>} TOOLS
- * @param {(request: object) => void} authenticate
  * @returns {(request: object) => Promise<object>}
  */
-function createRequestHandler(TOOLS, authenticate) {
+function createRequestHandler(TOOLS) {
   return async (request) => {
     try {
-      console.log(request);
-      if (authenticate) authenticate(request);
-
       const { method, params, id } = request;
       console.error(`REQUEST: ${method} [${id}]`);
 

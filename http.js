@@ -66,8 +66,8 @@ const server = new Server(
 
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
 
-const authenticate = (extra) => {
-  const authorization = extra.requestInfo.headers.authorization;
+const authenticate = (request) => {
+  const authorization = request.headers.authorization;
   if (!authorization) throw new Error('Unauthorized!');
 
   const authBuf = Buffer.from(authorization);

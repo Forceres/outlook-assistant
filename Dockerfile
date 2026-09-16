@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci --omit=dev --ignore-scripts
 
-COPY http.js config.js outlook-auth-server.js llms.txt ./
+COPY http.js config.js outlook-auth-server.js request-handler.js llms.txt ./
 COPY auth/ auth/
 COPY calendar/ calendar/
 COPY categories/ categories/

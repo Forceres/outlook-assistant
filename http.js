@@ -3,7 +3,7 @@ const {
   StreamableHTTPServerTransport,
 } = require('@modelcontextprotocol/sdk/server/streamableHttp.js');
 const config = require('./config');
-const { createRequestHandler } = require('./request-handler.js');
+const { createRequestHandler } = require('./request-handler');
 const { timingSafeEqual } = require('node:crypto');
 const { createServer } = require('node:http');
 

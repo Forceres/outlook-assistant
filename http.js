@@ -3,7 +3,7 @@ const {
   StreamableHTTPServerTransport,
 } = require('@modelcontextprotocol/sdk/server/streamableHttp.js');
 const config = require('./config');
-const { createRequestHandler } = require('./request-handler');
+const { createRequestHandler } = require('./request-handler.js');
 const { timingSafeEqual } = require('node:crypto');
 const { createServer } = require('node:http');
 
@@ -73,8 +73,12 @@ const authenticate = (extra) => {
   const authBuf = Buffer.from(authorization);
   const validBuf = Buffer.from(`Bearer ${AUTH_TOKEN}`);
 
-  if (authBuf.length === validBuf.length && timingSafeEqual(authBuf, validBuf))
+  if (
+    authBuf.length === validBuf.length &&
+    timingSafeEqual(authBuf, validBuf)
+  ) {
     return;
+  }
   throw new Error('Unauthorized!');
 };
 

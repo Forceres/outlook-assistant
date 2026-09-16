@@ -22,6 +22,7 @@ const { coerceArgsAgainstSchema } = require('./utils/schema-coerce');
 function createRequestHandler(TOOLS, authenticate) {
   return async (request) => {
     try {
+      console.log(request);
       if (authenticate) authenticate(request);
 
       const { method, params, id } = request;
